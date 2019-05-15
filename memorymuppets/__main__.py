@@ -15,10 +15,12 @@ class MainWindow(QMainWindow):
         self.setWindowTitle(name)
         ui.build(self)
 
-    def greetings(self, number):
+    def greetings(self, i):
         def button_response():
-            print('Button number: ', number)
-            self.buttons[number].toggle_icon()
+            print('Button number: ', i)
+            self.buttons[i].toggle_icon()
+            if self.buttons[i].icon_number == 1:
+                self.buttons[i].sound.play()
         return button_response
 
 

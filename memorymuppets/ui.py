@@ -1,6 +1,6 @@
 import sys
 from PySide2 import QtMultimedia
-from PySide2.QtCore import QSize, Qt, QTimer, QObject
+from PySide2.QtCore import QSize, Qt, QTimer, QObject, QUrl, QFile, QFileInfo
 from PySide2.QtGui import QBitmap, QIcon, QPixmap, QImage, QColor, qAlpha, QCursor
 from PySide2.QtWidgets import QApplication, QLabel, QLineEdit, QMainWindow, QWidget
 from PySide2.QtWidgets import QDialog, QPushButton, QVBoxLayout, QGridLayout
@@ -30,9 +30,15 @@ def build(win):  # # noqa: N803
     win.buttons = []
     for i in range(6):
         win.buttons.append(MuppetButton(f":/b{i+1}", f":/b{i+1}a"))
-        win.buttons[i].sound = QtMultimedia.QSound(f'sounds/s{i + 1}.mp3')
+        # win.buttons[i].sound = QtMultimedia.QSound(f':/memorymuppets/sounds/s{i + 1}.mp3')
         layout_buttons.addWidget(win.buttons[i], 0, i)
+        path_to_sound = QFileInfo(f"sounds/s{i + 1}.mp3").absoluteFilePath()
+        win.buttons[i].sound = QtMultimedia.QMediaPlayer()
+        win.buttons[i].sound.setMedia(QUrl.fromLocalFile(path_to_sound))
         win.buttons[i].clicked.connect(win.greetings(i))
+
+    # win.buttons[0].sound.setMedia(QUrl.fromLocalFile('E:/python_venv/MemoryMuppets/memorymuppets/s1.mp3'))
+    # win.buttons[0].sound.play()
 
     win.central_widget = QWidget()
     central_layout = QVBoxLayout()
