@@ -1,3 +1,5 @@
 .venv/
 .DS_STORE
 .vscode
+memorymuppets.egg-info
+__pycache__

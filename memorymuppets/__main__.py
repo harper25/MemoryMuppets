@@ -12,17 +12,13 @@ class MainWindow(QMainWindow):
     def __init__(self, name):
         super(MainWindow, self).__init__()
 
-        # ui
         self.setWindowTitle(name)
         ui.build(self)
-
-        # signals
-        self.button.clicked.connect(self.greetings(1))
 
     def greetings(self, number):
         def button_response():
             print('Button number: ', number)
-            self.button.setIcon(QPixmap(":/b1a"))
+            self.buttons[number].toggle_icon()
         return button_response
 
 
