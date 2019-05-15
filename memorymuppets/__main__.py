@@ -17,12 +17,15 @@ class MainWindow(QMainWindow):
         ui.build(self)
 
         # signals
-        self.button.clicked.connect(self.greetings)
+        self.button.clicked.connect(self.greetings(1))
 
-    def greetings(self):
-        text = self.edit.text()
-        print('Contents of QLineEdit widget: {}'.format(text))
-        self.button.setIcon(QPixmap(":/b1a"))
+    def greetings(self, number):
+        def button_response():
+            text = self.edit.text()
+            print('Contents of QLineEdit widget: {}'.format(text))
+            print('Button number: ', number)
+            self.button.setIcon(QPixmap(":/b1a"))
+        return button_response
 
 
 if __name__ == "__main__":
