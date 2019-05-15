@@ -21,8 +21,6 @@ class MainWindow(QMainWindow):
 
     def greetings(self, number):
         def button_response():
-            text = self.edit.text()
-            print('Contents of QLineEdit widget: {}'.format(text))
             print('Button number: ', number)
             self.button.setIcon(QPixmap(":/b1a"))
         return button_response

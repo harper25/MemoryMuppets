@@ -1,8 +1,8 @@
 import sys
-from PySide2.QtCore import QSize
-from PySide2.QtGui import QBitmap, QIcon, QPixmap, QImage, QColor, qAlpha
+from PySide2.QtCore import QSize, Qt
+from PySide2.QtGui import QBitmap, QIcon, QPixmap, QImage, QColor, qAlpha, QCursor
 from PySide2.QtWidgets import QApplication, QLabel, QLineEdit, QMainWindow, QWidget
-from PySide2.QtWidgets import QDialog, QPushButton, QVBoxLayout
+from PySide2.QtWidgets import QDialog, QPushButton, QVBoxLayout, QGridLayout
 
 
 def build(win):  ## noqa: N803
@@ -14,21 +14,19 @@ def build(win):  ## noqa: N803
 
     win.button = QPushButton()
     icon = QPixmap(":/b1")
-    # icon = QPixmap("img/b1.png")
-    # transparent_icon = _set_alpha_for_image_background(icon)
-    # icon.
-    print('ALPHA: ', icon.hasAlpha())
+
+    # print('ALPHA: ', icon.hasAlpha())
     win.button.setIcon(icon)
     win.button.setIconSize(QSize(81, 123))
+    win.button.setFixedSize(QSize(81, 123))
     win.button.setStyleSheet("background-color: rgba(255, 255, 255, 0);")
-
-    win.edit = QLineEdit("What's up?")
+    win.button.setCursor(QCursor(Qt.PointingHandCursor))
 
     # win.button.move(20, 500)
-    layout = QVBoxLayout()
-    layout.addWidget(win.edit)
-    layout.addWidget(win.button)
+    layout = QGridLayout()
 
-    win.edit_widget = QWidget()
-    win.edit_widget.setLayout(layout)
-    win.setCentralWidget(win.edit_widget)
+    layout.addWidget(win.button, 0, 5)
+
+    win.buttons_widget = QWidget()
+    win.buttons_widget.setLayout(layout)
+    win.setCentralWidget(win.buttons_widget)
