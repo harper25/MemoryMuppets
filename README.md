@@ -2,6 +2,9 @@
 
 ## Getting Started & Installing
 
+Build your own resources:
+`pyside2-rcc -o memorymuppets/resources.py resources.qrc`
+
 ## Authors
 
 * [harper25](https://github.com/harper25)

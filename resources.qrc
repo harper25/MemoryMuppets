@@ -1,0 +1,20 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource>
+
+<file alias="app">img/muppet.jpg</file>
+<file alias="background">img/YipYips_29_1.jpg</file>
+<file alias="b1">img/b1.png</file>
+<file alias="b2">img/b2.png</file>
+<file alias="b3">img/b3.png</file>
+<file alias="b4">img/b4.png</file>
+<file alias="b5">img/b5.png</file>
+<file alias="b6">img/b6.png</file>
+<file alias="b1a">img/b1a.png</file>
+<file alias="b2a">img/b2a.png</file>
+<file alias="b3a">img/b3a.png</file>
+<file alias="b4a">img/b4a.png</file>
+<file alias="b5a">img/b5a.png</file>
+<file alias="b6a">img/b6a.png</file>
+
+</qresource>
+</RCC>

@@ -4,10 +4,7 @@ from PySide2.QtGui import QBitmap, QIcon, QPixmap, QImage, QColor, qAlpha
 from PySide2.QtWidgets import QApplication, QLabel, QLineEdit, QMainWindow, QWidget
 from PySide2.QtWidgets import QDialog, QPushButton, QVBoxLayout
 
-# from PIL import Image
-
-import memorymuppets.resources
-
+import memorymuppets.resources  # noqa
 
 
 class MainWindow(QMainWindow):
@@ -18,21 +15,18 @@ class MainWindow(QMainWindow):
         self.setFixedSize(624, 468)
         self.setStyleSheet("QMainWindow {background-image: url(:/background)}")
 
-        # img = Image.open('img/p1.bmp')
-        # process_image(img)
-        # img.save('img/p1.png')
 
         # Bulb Widget
         self.bulbs = []
 
         self.button = QPushButton()
-        # icon = QPixmap(":/p1")
-        icon = QPixmap("img/b1.png")
+        icon = QPixmap(":/b1")
+        # icon = QPixmap("img/b1.png")
         # transparent_icon = _set_alpha_for_image_background(icon)
         # icon.
         print('ALPHA: ', icon.hasAlpha())
         self.button.setIcon(icon)
-        self.button.setIconSize(QSize(81,123))
+        self.button.setIconSize(QSize(81, 123))
         self.button.setStyleSheet("background-color: rgba(255, 255, 255, 0);")
 
 
@@ -69,16 +63,15 @@ class MainWindow(QMainWindow):
     def greetings(self):
         text = self.edit.text()
         print('Contents of QLineEdit widget: {}'.format(text))
+        self.button.setIcon(QPixmap(":/b1a"))
+
 
 
 if __name__ == "__main__":
-
-
-
-    name = "Muppet Memory Game!"
+    appname = "Muppet Memory Game!"
     app = QApplication([])
-    app.setApplicationName(name)
+    app.setApplicationName(appname)
     app.setWindowIcon(QIcon(":app"))
-    win = MainWindow(name)
+    win = MainWindow(appname)
     win.show()
     sys.exit(app.exec_())
