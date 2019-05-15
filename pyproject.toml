@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "MemoryMuppets"
+version = "0.1.0"
+description = ""
+authors = ["Kuba25 <olesjakubb@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+pyside2 = "^5.12"
+
+[tool.poetry.dev-dependencies]
+pytest = "^3.0"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
