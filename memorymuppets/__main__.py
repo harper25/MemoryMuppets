@@ -15,7 +15,7 @@ class MainWindow(QMainWindow):
         self.setWindowTitle(name)
         ui.build(self)
 
-    def greetings(self, i):
+    def button_pressed(self, i):
         def button_response():
             print('Button number: ', i)
             self.buttons[i].toggle_icon()
