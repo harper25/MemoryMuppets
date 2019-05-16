@@ -1,6 +1,6 @@
 import sys
-from PySide2.QtCore import QSize
-from PySide2.QtGui import QBitmap, QIcon, QPixmap, QImage, QColor, qAlpha
+from PySide2.QtCore import QSize, Qt
+from PySide2.QtGui import QBitmap, QIcon, QPixmap, QImage, QColor, qAlpha, QCursor
 from PySide2.QtWidgets import QApplication, QLabel, QLineEdit, QMainWindow, QWidget
 from PySide2.QtWidgets import QDialog, QPushButton, QVBoxLayout
 
@@ -18,14 +18,22 @@ class MainWindow(QMainWindow):
 
         self.sequence = [randint(0, 5)]
         print(self.sequence)
+        self.buttons_active = False
 
     def button_pressed(self, i):
         def button_response():
             print('Button number: ', i)
-            self.buttons[i].toggle_icon()
-            if self.buttons[i].icon_number == 1:
-                self.buttons[i].sound.play()
+            if self.buttons_active:
+                self.buttons[i].toggle_icon()
+                if self.buttons[i].icon_number:
+                    self.buttons[i].sound.play()
         return button_response
+
+    def toggle_buttons_cursor(self):
+        if self.buttons_active:
+            self.setCursor(QCursor(Qt.PointingHandCursor))
+        else:
+            self.setCursor(QCursor(Qt.PointingHandCursor))
 
 
 if __name__ == "__main__":
