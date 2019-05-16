@@ -6,6 +6,7 @@ from PySide2.QtWidgets import QDialog, QPushButton, QVBoxLayout
 
 import memorymuppets.resources  # noqa
 from memorymuppets import ui
+from random import randint
 
 
 class MainWindow(QMainWindow):
@@ -14,6 +15,9 @@ class MainWindow(QMainWindow):
 
         self.setWindowTitle(name)
         ui.build(self)
+
+        self.sequence = [randint(0, 5)]
+        print(self.sequence)
 
     def button_pressed(self, i):
         def button_response():
