@@ -1,9 +1,8 @@
-import sys
 from PySide2 import QtMultimedia
-from PySide2.QtCore import QSize, Qt, QTimer, QObject, QUrl, QFile, QFileInfo
-from PySide2.QtGui import QBitmap, QIcon, QPixmap, QImage, QColor, qAlpha, QCursor
-from PySide2.QtWidgets import QApplication, QLabel, QLineEdit, QMainWindow, QWidget
-from PySide2.QtWidgets import QDialog, QPushButton, QVBoxLayout, QGridLayout
+from PySide2.QtCore import QSize, Qt, QUrl, QFileInfo, Signal
+from PySide2.QtGui import QPixmap, QCursor
+from PySide2.QtWidgets import QWidget
+from PySide2.QtWidgets import QPushButton, QVBoxLayout, QGridLayout
 
 
 class MuppetButton(QPushButton):
