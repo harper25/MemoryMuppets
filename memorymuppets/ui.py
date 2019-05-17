@@ -44,9 +44,27 @@ class MuppetButton(QPushButton):
                             border-radius: 12px;")
 
 
-    def toggle_icon(self):
-        self.icon_number = (self.icon_number + 1) % 2
-        self.setIcon(self.icons[self.icon_number])
+class PlayButton(QPushButton):
+    def __init__(self):
+        super(PlayButton, self).__init__("PLAY!")
+        self.setFixedSize(QSize(400, 80))
+        self.setCursor(QCursor(Qt.PointingHandCursor))
+        # font-family:BalooBhaiRegular; \
+        self.defaultStyle = "background-color: rgba(255, 255, 255, 100); \
+                             border-radius: 12px; \
+                             font-size: 32px; \
+                             color: #1C4B98; \
+                             "
+        self.setStyleSheet(self.defaultStyle)
+        self.hoverStyle = self.defaultStyle.replace("rgba(255, 255, 255, 100)",
+                                                    "rgba(255, 255, 255, 140)")
+        self.active = True
+
+    def enterEvent(self, event):
+        self.setStyleSheet(self.hoverStyle)
+
+    def leaveEvent(self, event):
+        self.setStyleSheet(self.defaultStyle)
 
 
 def build(win):  # # noqa: N803
@@ -79,3 +97,13 @@ def build(win):  # # noqa: N803
     win.buttons_widget.setLayout(layout_buttons)
     win.buttons_widget.setParent(win.central_widget)
     win.buttons_widget.move(0, 225)
+
+    # play button widget
+    layout_play = QVBoxLayout()
+    win.play_button = PlayButton()
+    win.play_button.clicked.connect(win.play_button_pressed)
+    layout_play.addWidget(win.play_button)
+    win.play_widget = QWidget()
+    win.play_widget.setLayout(layout_play)
+    win.play_widget.setParent(win.central_widget)
+    win.play_widget.move(112, 348)
