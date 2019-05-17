@@ -54,28 +54,28 @@ def build(win):  # # noqa: N803
     win.setStyleSheet("QMainWindow {background-image: url(:/background)}")
 
     layout_buttons = QGridLayout()
-    win.buttons = []
+    # layout_buttons.setHorizontalSpacing(25)  # win
+    # layout_buttons.setHorizontalSpacing(37)  # mac
+    win.muppets = []
     for i in range(6):
-        win.buttons.append(MuppetButton(f":/b{i+1}", f":/b{i+1}a"))
-        # win.buttons[i].sound = QtMultimedia.QSound(f':/memorymuppets/sounds/s{i + 1}.mp3')
-        layout_buttons.addWidget(win.buttons[i], 0, i)
-        layout_buttons.setColumnMinimumWidth(i, 91)
+        win.muppets.append(MuppetButton(f":/b{i+1}", f":/b{i+1}a", i))
+        layout_buttons.addWidget(win.muppets[i], 0, i)
+        # layout_buttons.setColumnMinimumWidth(i, 91)  # win
+        # layout_buttons.setColumnMinimumWidth(i, 98)  # mac
         path_to_sound = QFileInfo(f"sounds/s{i + 1}.mp3").absoluteFilePath()
-        win.buttons[i].sound = QtMultimedia.QMediaPlayer()
-        win.buttons[i].sound.setMedia(QUrl.fromLocalFile(path_to_sound))
-        win.buttons[i].clicked.connect(win.button_pressed(i))
+        win.muppets[i].sound = QtMultimedia.QMediaPlayer()
+        win.muppets[i].sound.setMedia(QUrl.fromLocalFile(path_to_sound))
+        win.muppets[i].signal.connect(win.muppet_pressed(i))
 
-    # win.buttons[0].sound.setMedia(QUrl.fromLocalFile('E:/python_venv/MemoryMuppets/memorymuppets/s1.mp3'))
-    # win.buttons[0].sound.play()
-
+    # central widget
     win.central_widget = QWidget()
     central_layout = QVBoxLayout()
     central_layout.addWidget(win.central_widget)
     win.setCentralWidget(win.central_widget)
 
+    # muppets widget
     win.buttons_widget = QWidget()
+    win.buttons_widget.setFixedSize(QSize(624, 130))
     win.buttons_widget.setLayout(layout_buttons)
     win.buttons_widget.setParent(win.central_widget)
     win.buttons_widget.move(0, 225)
-    # layout_buttons.setHorizontalSpacing(25)
-    # layout_buttons.setHorizontalSpacing(37)
