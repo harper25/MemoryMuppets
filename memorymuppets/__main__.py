@@ -1,8 +1,7 @@
 import sys
-from PySide2.QtCore import QSize, Qt
-from PySide2.QtGui import QBitmap, QIcon, QPixmap, QImage, QColor, qAlpha, QCursor
-from PySide2.QtWidgets import QApplication, QLabel, QLineEdit, QMainWindow, QWidget
-from PySide2.QtWidgets import QDialog, QPushButton, QVBoxLayout
+from PySide2.QtCore import Qt, QTimer
+from PySide2.QtGui import QCursor, QIcon, QFontDatabase
+from PySide2.QtWidgets import QApplication, QMainWindow
 
 import memorymuppets.resources  # noqa
 from memorymuppets import ui
@@ -13,6 +12,7 @@ class MainWindow(QMainWindow):
     def __init__(self, name):
         super(MainWindow, self).__init__()
 
+        # user interface
         self.setWindowTitle(name)
         ui.build(self)
 
@@ -38,6 +38,8 @@ class MainWindow(QMainWindow):
 
 if __name__ == "__main__":
     appname = "Muppet Memory Game!"
+    # QFontDatabase.addApplicationFont(":/font")
+    QFontDatabase.addApplicationFont(":/BalooBhaiRegular.ttf")
     app = QApplication([])
     app.setApplicationName(appname)
     app.setWindowIcon(QIcon(":app"))
