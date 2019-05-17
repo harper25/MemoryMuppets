@@ -51,6 +51,7 @@ class MainWindow(QMainWindow):
             self.game = True
             self.sequence = []
             self.timer.start(100)
+            self.start.play()
 
     def play_sequence(self):
         self.counter_sequence += 1
