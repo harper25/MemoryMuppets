@@ -7,15 +7,42 @@ from PySide2.QtWidgets import QDialog, QPushButton, QVBoxLayout, QGridLayout
 
 
 class MuppetButton(QPushButton):
-    def __init__(self, icon, icon_active):
+    signal = Signal(int)
+
+    def __init__(self, icon, icon_active, number):
         super(MuppetButton, self).__init__()
+        self.number = number
         self.icons = [QPixmap(icon), QPixmap(icon_active)]
-        self.icon_number = 0
         self.setIcon(self.icons[0])
         self.setIconSize(QSize(80, 130))
         self.setFixedSize(QSize(80, 80))
-        self.setStyleSheet("background-color: rgba(255, 255, 255, 0);")
         self.setCursor(QCursor(Qt.PointingHandCursor))
+        self.setStyleSheet("background-color: rgba(255, 255, 255, 30); \
+                            border-radius: 12px;")
+
+    def respond(self):
+        self.sound.stop()
+        self.setIcon(self.icons[1])
+        self.sound.play()
+
+    def unset_icon(self):
+        self.setIcon(self.icons[0])
+
+    def mousePressEvent(self, event):
+        self.signal.emit(self.number)
+
+    def mouseReleaseEvent(self, event):
+        self.setIcon(self.icons[0])
+
+
+    def enterEvent(self, event):
+        self.setStyleSheet("background-color: rgba(255, 255, 255, 60); \
+                            border-radius: 12px;")
+
+    def leaveEvent(self, event):
+        self.setStyleSheet("background-color: rgba(255, 255, 255, 30); \
+                            border-radius: 12px;")
+
 
     def toggle_icon(self):
         self.icon_number = (self.icon_number + 1) % 2
