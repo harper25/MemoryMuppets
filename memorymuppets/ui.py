@@ -107,3 +107,13 @@ def build(win):  # # noqa: N803
     win.play_widget.setLayout(layout_play)
     win.play_widget.setParent(win.central_widget)
     win.play_widget.move(112, 348)
+
+    # sounds start & failure
+    path_to_sound = QFileInfo("sounds/start.mp3").absoluteFilePath()
+    win.start = QtMultimedia.QMediaPlayer()
+    win.start.setMedia(QUrl.fromLocalFile(path_to_sound))
+    path_to_sound = QFileInfo("sounds/end.mp3").absoluteFilePath()
+    win.end = QtMultimedia.QMediaPlayer()
+    win.end.setMedia(QUrl.fromLocalFile(path_to_sound))
+
+    win.muppets[0].sound.play()
