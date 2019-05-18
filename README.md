@@ -1,6 +1,35 @@
-# BBreaker!
+# MemoryMuppets
+
+MemoryMuppets is a straightforward, yet entertaining, memory game based on The Muppets.
+Please, remember to turn on the sound in your device to have better user experience.
 
 ## Getting Started & Installing
+
+Please, either clone the repository or use incuded tar/wheels.
+
+### For playing
+
+* go to [releases](https://github.com/harper25/BBreaker/releases) and download a last release, compatible with your OS
+* create a virtual environment for the game (ex. `virtualenv .venv`) and activate it
+* run `pip install <last-release-name>`
+* run `python -m bbreaker`
+* have fun!
+
+### For development
+
+The project was developed with [Poetry](https://poetry.eustace.io/). Therefore you have to:
+
+* install Poetry: [GitHub](https://github.com/sdispater/poetry)
+* git clone the repository
+* create a virtual environment for development (ex. `virtualenv .venv`) and activate it
+* cd to main folder and run: `poetry update` to get all dependencies from `pyproject.toml` installed to your virtual environment
+* run `python -m bbreaker`
+* modify and have fun!
+
+The project uses common Python packages. No special prerequisites required.
+
+Build your own resources:
+`pyside2-rcc -o memorymuppets/resources.py resources.qrc`
 
 ## Authors
 
