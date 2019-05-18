@@ -19,27 +19,15 @@ class MainWindow(QMainWindow):
         # game variables
         self.muppets_active = True
         self.game = False
+        self.mode = 0
         self.sequence = []
         self.counter_ok = -1
         self.counter_sequence = -2
         self.timer = QTimer()
         self.timer.timeout.connect(self.play_sequence)
 
-    def toggle_buttons_cursor(self):
-        if self.muppets_active:
-            self.setCursor(QCursor(Qt.PointingHandCursor))
-        else:
-            self.setCursor(QCursor(Qt.ArrowCursor))
-
-    def tick(self):
-        self.timer.stop()
-        # self.timer.start(1000)
-        # self.timer.timeout.connect(self.tick)
-        # self.timer.start(1000)
-
     def muppet_pressed(self, i):
         def button_response():
-            print('Button number: ', i)
             if self.game and self.muppets_active:
                 self.check_sequence(i)
             elif self.muppets_active:
@@ -48,21 +36,31 @@ class MainWindow(QMainWindow):
 
     def play_button_pressed(self):
         if not self.game:
+            self.muppets_active = False
             self.game = True
             self.sequence = []
             self.timer.start(100)
             self.start.play()
 
+    def reset_counters(self):
+        self.counter_ok = -1
+        self.counter_sequence = -2
+
+    def shuffle_sequence(self):
+        if self.mode == 0:
+            self.sequence.append(randint(0, 5))
+        elif self.mode == 1:
+            rounds = len(self.sequence)
+            self.sequence = [randint(0, 5) for i in range(rounds + 1)]
+
     def play_sequence(self):
         self.counter_sequence += 1
-        print(self.counter_sequence)
         if self.counter_sequence == -1:
-            self.muppets_active = False
             self.play_button.setCursor(QCursor(Qt.ArrowCursor))
             self.play_button.setText("Now, remember...")
             self.timer.start(1000)
+            self.shuffle_sequence()
         elif self.counter_sequence == 0:
-            self.sequence.append(randint(0, 5))
             muppet = self.sequence[self.counter_sequence]
             self.muppets[muppet].respond()
         elif self.counter_sequence < len(self.sequence):
@@ -76,7 +74,6 @@ class MainWindow(QMainWindow):
             self.timer.stop()
             self.muppets_active = True
             self.play_button.setText("Repeat...")
-            # self.toggle_buttons_cursor()
 
     def check_sequence(self, i):
         self.counter_ok += 1
@@ -86,26 +83,27 @@ class MainWindow(QMainWindow):
             self.play_button.setCursor(QCursor(Qt.PointingHandCursor))
             self.play_button.setText(
                 f"Nope! Score: {len(self.sequence) - 1}. Play?")
-            self.counter_ok = -1
-            self.counter_sequence = -2
+            self.reset_counters()
         elif self.counter_ok < len(self.sequence) - 1:
             self.muppets[i].respond()
         else:
             self.muppets[i].respond()
             self.play_button.setText(
                 f"Yes! Score: {len(self.sequence)}")
-            self.counter_ok = -1
-            self.counter_sequence = -2
+            self.muppets_active = False
+            self.reset_counters()
             self.timer.start(1000)
 
 
-if __name__ == "__main__":
+def run_game():
     appname = "Muppet Memory Game!"
-    # QFontDatabase.addApplicationFont(":/font")
-    QFontDatabase.addApplicationFont(":/BalooBhaiRegular.ttf")
     app = QApplication([])
     app.setApplicationName(appname)
     app.setWindowIcon(QIcon(":app"))
     win = MainWindow(appname)
     win.show()
     sys.exit(app.exec_())
+
+
+if __name__ == "__main__":
+    run_game()

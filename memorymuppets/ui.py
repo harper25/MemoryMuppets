@@ -33,7 +33,6 @@ class MuppetButton(QPushButton):
     def mouseReleaseEvent(self, event):
         self.setIcon(self.icons[0])
 
-
     def enterEvent(self, event):
         self.setStyleSheet("background-color: rgba(255, 255, 255, 60); \
                             border-radius: 12px;")
@@ -48,7 +47,6 @@ class PlayButton(QPushButton):
         super(PlayButton, self).__init__("PLAY!")
         self.setFixedSize(QSize(400, 80))
         self.setCursor(QCursor(Qt.PointingHandCursor))
-        # font-family:BalooBhaiRegular; \
         self.defaultStyle = "background-color: rgba(255, 255, 255, 100); \
                              border-radius: 12px; \
                              font-size: 32px; \
@@ -66,19 +64,17 @@ class PlayButton(QPushButton):
         self.setStyleSheet(self.defaultStyle)
 
 
-def build(win):  # # noqa: N803
+def build(win):
     win.setFixedSize(624, 468)
     win.setStyleSheet("QMainWindow {background-image: url(:/background)}")
 
     layout_buttons = QGridLayout()
-    # layout_buttons.setHorizontalSpacing(25)  # win
-    # layout_buttons.setHorizontalSpacing(37)  # mac
+    # layout_buttons.setHorizontalSpacing(25)  # win 25, mac 37
     win.muppets = []
     for i in range(6):
         win.muppets.append(MuppetButton(f":/b{i+1}", f":/b{i+1}a", i))
         layout_buttons.addWidget(win.muppets[i], 0, i)
-        # layout_buttons.setColumnMinimumWidth(i, 91)  # win
-        # layout_buttons.setColumnMinimumWidth(i, 98)  # mac
+        # layout_buttons.setColumnMinimumWidth(i, 91)  # win 91, mac 98
         path_to_sound = QFileInfo(f"sounds/s{i + 1}.mp3").absoluteFilePath()
         win.muppets[i].sound = QtMultimedia.QMediaPlayer()
         win.muppets[i].sound.setMedia(QUrl.fromLocalFile(path_to_sound))
