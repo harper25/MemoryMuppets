@@ -15,7 +15,6 @@
 <file alias="b4a">img/b4a.png</file>
 <file alias="b5a">img/b5a.png</file>
 <file alias="b6a">img/b6a.png</file>
-<file alias="font">fonts/BalooBhaiRegular.ttf</file>
 
 </qresource>
 </RCC>
