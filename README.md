@@ -13,7 +13,7 @@ Please, either clone the repository or use incuded tar/wheels.
 
 ### For playing
 
-* go to [releases](https://github.com/harper25/Memoryuppets/releases) and download a last release, compatible with your OS
+* go to [releases](https://github.com/harper25/MemoryMuppets/releases) and download a last release
 * create a virtual environment for the game (ex. `virtualenv .venv`) and activate it
 * run `pip install <last-release-name>`
 * run `python -m memorymuppets`
