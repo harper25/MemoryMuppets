@@ -3,7 +3,7 @@
 MemoryMuppets is a straightforward, yet entertaining, memory game based on The Muppets.
 Please, remember to turn on the sound in your device to have better user experience.
 
-<p align="center"> 
+<p align="center">
   <img src="/img/memorymuppets.PNG">
 </p>
 
@@ -34,6 +34,9 @@ The project uses common Python packages. No special prerequisites required.
 
 Build your own resources:
 `pyside2-rcc -o memorymuppets/resources.py resources.qrc`
+
+Build app with pyinstaller:
+`pyinstaller --onefile --windowed --version-file file_version_info.txt --name MemoryMuppets memorymuppets/__main__.py`
 
 ## Authors
 
