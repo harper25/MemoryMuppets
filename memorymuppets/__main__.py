@@ -1,6 +1,6 @@
 import sys
 from PySide2.QtCore import Qt, QTimer
-from PySide2.QtGui import QCursor, QIcon, QFontDatabase
+from PySide2.QtGui import QCursor, QIcon
 from PySide2.QtWidgets import QApplication, QMainWindow
 
 import memorymuppets.resources  # noqa
