@@ -75,9 +75,8 @@ def build(win):
         win.muppets.append(MuppetButton(f":/b{i+1}", f":/b{i+1}a", i))
         layout_buttons.addWidget(win.muppets[i], 0, i)
         # layout_buttons.setColumnMinimumWidth(i, 91)  # win 91, mac 98
-        path_to_sound = QFileInfo(f"sounds/s{i + 1}.mp3").absoluteFilePath()
         win.muppets[i].sound = QtMultimedia.QMediaPlayer()
-        win.muppets[i].sound.setMedia(QUrl.fromLocalFile(path_to_sound))
+        win.muppets[i].sound.setMedia(QUrl(f"qrc:/s{i+1}"))
         win.muppets[i].signal.connect(win.muppet_pressed(i))
 
     # central widget
@@ -104,11 +103,9 @@ def build(win):
     win.play_widget.move(112, 348)
 
     # sounds start & failure
-    path_to_sound = QFileInfo("sounds/start.mp3").absoluteFilePath()
     win.start = QtMultimedia.QMediaPlayer()
-    win.start.setMedia(QUrl.fromLocalFile(path_to_sound))
-    path_to_sound = QFileInfo("sounds/end.mp3").absoluteFilePath()
+    win.start.setMedia(QUrl('qrc:/start'))
     win.end = QtMultimedia.QMediaPlayer()
-    win.end.setMedia(QUrl.fromLocalFile(path_to_sound))
+    win.end.setMedia(QUrl('qrc:/end'))
 
     win.muppets[0].sound.play()
