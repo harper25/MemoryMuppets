@@ -1,5 +1,5 @@
 from PySide2 import QtMultimedia
-from PySide2.QtCore import QSize, Qt, QUrl, QFileInfo, Signal
+from PySide2.QtCore import QSize, Qt, QUrl, Signal
 from PySide2.QtGui import QPixmap, QCursor
 from PySide2.QtWidgets import QWidget
 from PySide2.QtWidgets import QPushButton, QVBoxLayout, QGridLayout
