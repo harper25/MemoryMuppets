@@ -33,9 +33,11 @@ The project was developed with [Poetry](https://poetry.eustace.io/). Therefore y
 The project uses common Python packages. No special prerequisites required.
 
 Build your own resources:
+
 `pyside2-rcc -o memorymuppets/resources.py resources.qrc`
 
 Build app with pyinstaller:
+
 `pyinstaller --onefile --windowed --version-file file_version_info.txt --name MemoryMuppets memorymuppets/__main__.py`
 
 ## Authors
