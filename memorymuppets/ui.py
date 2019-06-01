@@ -1,4 +1,4 @@
-from PySide2 import QtMultimedia
+from PySide2.QtMultimedia import QMediaPlayer
 from PySide2.QtCore import QSize, Qt, QUrl, Signal
 from PySide2.QtGui import QPixmap, QCursor
 from PySide2.QtWidgets import QWidget
@@ -42,10 +42,10 @@ class MuppetButton(QPushButton):
                             border-radius: 12px;")
 
 
-class PlayButton(QPushButton):
-    def __init__(self):
-        super(PlayButton, self).__init__("PLAY!")
-        self.setFixedSize(QSize(400, 80))
+class UIButton(QPushButton):
+    def __init__(self, text, size):
+        super(UIButton, self).__init__(text)
+        self.setFixedSize(QSize(*size))
         self.setCursor(QCursor(Qt.PointingHandCursor))
         self.defaultStyle = "background-color: rgba(255, 255, 255, 100); \
                              border-radius: 12px; \
@@ -75,7 +75,7 @@ def build(win):
         win.muppets.append(MuppetButton(f":/b{i+1}", f":/b{i+1}a", i))
         layout_buttons.addWidget(win.muppets[i], 0, i)
         # layout_buttons.setColumnMinimumWidth(i, 91)  # win 91, mac 98
-        win.muppets[i].sound = QtMultimedia.QMediaPlayer()
+        win.muppets[i].sound = QMediaPlayer()
         win.muppets[i].sound.setMedia(QUrl(f"qrc:/s{i+1}"))
         win.muppets[i].signal.connect(win.muppet_pressed(i))
 
@@ -92,20 +92,37 @@ def build(win):
     win.buttons_widget.setParent(win.central_widget)
     win.buttons_widget.move(0, 225)
 
-    # play button widget
-    layout_play = QVBoxLayout()
-    win.play_button = PlayButton()
-    win.play_button.clicked.connect(win.play_button_pressed)
-    layout_play.addWidget(win.play_button)
+    # ui play widget
     win.play_widget = QWidget()
+    layout_play = QVBoxLayout()
     win.play_widget.setLayout(layout_play)
     win.play_widget.setParent(win.central_widget)
     win.play_widget.move(112, 348)
+    win.play_button = UIButton('PLAY!', (400, 80))
+    win.play_button.clicked.connect(win.play_button_pressed)
+    layout_play.addWidget(win.play_button)
+
+    # ui levels widget
+    win.levels_widget = QWidget()
+    layout_levels = QGridLayout()
+    win.levels_widget.setLayout(layout_levels)
+    win.levels_widget.setParent(win.central_widget)
+    win.levels_widget.move(112, 348)
+    win.level_buttons = []
+    win.level_buttons.append(UIButton('Easy!', (190, 80)))
+    win.level_buttons.append(UIButton('Hard!', (190, 80)))
+    win.level_buttons[0].clicked.connect(win.level_button_pressed(0))
+    win.level_buttons[1].clicked.connect(win.level_button_pressed(1))
+    layout_levels.addWidget(win.level_buttons[0], 0, 0)
+    layout_levels.addWidget(win.level_buttons[1], 0, 1, Qt.AlignRight)
+    layout_levels.setColumnMinimumWidth(1, 200)
+    layout_levels.setColumnMinimumWidth(0, 200)
+    win.levels_widget.hide()
 
     # sounds start & failure
-    win.start = QtMultimedia.QMediaPlayer()
+    win.start = QMediaPlayer()
     win.start.setMedia(QUrl('qrc:/start'))
-    win.end = QtMultimedia.QMediaPlayer()
+    win.end = QMediaPlayer()
     win.end.setMedia(QUrl('qrc:/end'))
 
     win.muppets[0].sound.play()
