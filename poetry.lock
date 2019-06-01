@@ -62,7 +62,7 @@ python-versions = ">=3.4"
 version = "7.0.0"
 
 [[package]]
-category = "main"
+category = "dev"
 description = "Python Imaging Library (Fork)"
 name = "pillow"
 optional = false
@@ -147,7 +147,7 @@ python-versions = ">=2.6, !=3.0.*, !=3.1.*"
 version = "1.12.0"
 
 [metadata]
-content-hash = "d228268085b6e5d08f9972f23ad1530a8db4ed127f9af51495faa02e418548d4"
+content-hash = "90824ec7de0734390ec38364d31935b2e45ea7c4ab44a57a37540822c93fa85e"
 python-versions = "^3.6"
 
 [metadata.hashes]

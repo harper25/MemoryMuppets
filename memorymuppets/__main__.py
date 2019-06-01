@@ -36,11 +36,20 @@ class MainWindow(QMainWindow):
 
     def play_button_pressed(self):
         if not self.game:
+            self.play_widget.hide()
+            self.levels_widget.show()
+
+    def level_button_pressed(self, i):
+        def button_response():
+            self.mode = i
             self.muppets_active = False
             self.game = True
             self.sequence = []
-            self.timer.start(100)
+            self.timer.start(1)
             self.start.play()
+            self.levels_widget.hide()
+            self.play_widget.show()
+        return button_response
 
     def reset_counters(self):
         self.counter_ok = -1
