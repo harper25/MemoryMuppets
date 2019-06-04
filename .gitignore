@@ -7,3 +7,4 @@ dist
 build
 *.spec
 file_version_info.txt
+pip-wheel*

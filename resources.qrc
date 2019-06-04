@@ -15,14 +15,6 @@
 <file alias="b4a">img/b4a.png</file>
 <file alias="b5a">img/b5a.png</file>
 <file alias="b6a">img/b6a.png</file>
-<file alias="s1">sounds/s1.wav</file>
-<file alias="s2">sounds/s2.wav</file>
-<file alias="s3">sounds/s3.wav</file>
-<file alias="s4">sounds/s4.wav</file>
-<file alias="s5">sounds/s5.wav</file>
-<file alias="s6">sounds/s6.wav</file>
-<file alias="start">sounds/start.wav</file>
-<file alias="end">sounds/end.wav</file>
 
 </qresource>
 </RCC>
