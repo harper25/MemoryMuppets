@@ -1,4 +1,4 @@
-from PySide2.QtMultimedia import QMediaPlayer
+from PySide2.QtMultimedia import QMediaPlayer, QSound
 from PySide2.QtCore import QFileInfo, QSize, Qt, QUrl, Signal
 from PySide2.QtGui import QPixmap, QCursor
 from PySide2.QtWidgets import QWidget
@@ -66,6 +66,23 @@ class UIButton(QPushButton):
         self.setStyleSheet(self.defaultStyle)
 
 
+def _set_sound_source(alias):
+    solution = 2
+    if solution == 0:
+        # qrc, MediaPlayer()
+        sound = QMediaPlayer()
+        sound.setMedia(QUrl('qrc:/' + alias))
+    elif solution == 1:
+        # absoluteFilePath(), MediaPlayer()
+        path = QFileInfo('sounds/' + alias + '.wav').absoluteFilePath()
+        sound = QMediaPlayer()
+        sound.setMedia(QUrl(path))
+    elif solution == 2:
+        # qrc, QSound()
+        sound = QSound('qrc:/' + alias)
+    return sound
+
+
 def build(win):
     win.setFixedSize(624, 468)
     win.setStyleSheet("QMainWindow {background-image: url(:/background)}")
@@ -77,10 +94,7 @@ def build(win):
         win.muppets.append(MuppetButton(f":/b{i+1}", f":/b{i+1}a", i))
         layout_buttons.addWidget(win.muppets[i], 0, i)
         # layout_buttons.setColumnMinimumWidth(i, 91)  # win 91, mac 98
-        win.muppets[i].sound = QMediaPlayer()
-        # path_to_sound = QFileInfo(f"sounds/s{i + 1}.wav").absoluteFilePath()
-        # win.muppets[i].sound.setMedia(QUrl.fromLocalFile(path_to_sound))
-        win.muppets[i].sound.setMedia(QUrl(f"qrc:/s{i+1}"))
+        win.muppets[i].sound = _set_sound_source(f"s{i+1}")
         win.muppets[i].signal.connect(win.muppet_pressed(i))
 
     # central widget
@@ -124,13 +138,7 @@ def build(win):
     win.levels_widget.hide()
 
     # sounds start & failure
-    win.start = QMediaPlayer()
-    # path_to_sound = QFileInfo("sounds/start.wav").absoluteFilePath()
-    # win.start.setMedia(QUrl.fromLocalFile(path_to_sound))
-    win.start.setMedia(QUrl(f"qrc:/start"))
-    win.end = QMediaPlayer()
-    # path_to_sound = QFileInfo("sounds/end.wav").absoluteFilePath()
-    # win.end.setMedia(QUrl.fromLocalFile(path_to_sound))
-    win.end.setMedia(QUrl(f"qrc:/end"))
+    win.start = _set_sound_source('start')
+    win.end = _set_sound_source('end')
 
     win.muppets[0].sound.play()
