@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "MemoryMuppets"
-version = "0.2.2"
+version = "0.2.4"
 description = "Memory Game"
 authors = ["harper25 <olesjakubb@gmail.com>"]
 
