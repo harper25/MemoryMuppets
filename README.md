@@ -16,7 +16,7 @@ Please, either clone the repository or use incuded tar/wheels.
 * go to [releases](https://github.com/harper25/MemoryMuppets/releases) and download a last release
 * create a virtual environment for the game (ex. `virtualenv .venv`) and activate it
 * run `pip install <last-release-name>`
-* run `python -m memorymuppets`
+* run `python -m memorymuppets` or simply: `memo`
 * have fun!
 
 ### For development
@@ -26,8 +26,8 @@ The project was developed with [Poetry](https://poetry.eustace.io/). Therefore y
 * install Poetry: [GitHub](https://github.com/sdispater/poetry)
 * git clone the repository
 * create a virtual environment for development (ex. `virtualenv .venv`) and activate it
-* cd to main folder and run: `poetry update` to get all dependencies from `pyproject.toml` installed to your virtual environment
-* run `python -m memorymuppets`
+* cd to main folder and run: `poetry install` to get all dependencies from `pyproject.toml` installed to your virtual environment
+* run `python -m memorymuppets` or simply: `memo`
 * modify and have fun!
 
 The project uses common Python packages. No special prerequisites required.
